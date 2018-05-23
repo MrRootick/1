@@ -140,6 +140,7 @@ def handle_text(message):
 
 @bot.message_handler(commands=['analys'])  # Обработка команды start
 def handle_text(message):
+    f = open('temp', 'w')
     answer=" Жди около минуты пока обновятся данные"
     log(message, answer)
     bot.send_message(message.chat.id, answer)
@@ -150,12 +151,17 @@ def handle_text(message):
             for x in range(0, 26):
                 answer=comparison.analys(brige,y,i,x)
                 if answer!=None:
-
-                    log(message, answer)
-                    bot.send_message(message.chat.id, answer )
+                    f.write(answer+'\n'+'\n')
+    f.close()
+    f=open('temp','r')
+    answ= f.read()
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
+    f.close()
 
 @bot.message_handler(commands=['wex'])  # Обработка команды Wex
 def handle_text(message):
+    f = open('temp', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['btc_usd','btc_rur','btc_eur',
@@ -167,16 +173,20 @@ def handle_text(message):
     i = 0
     while i <= 27:
         answer = ('####' + now + '####' +
-                  '\n' + wex.Api(coin[i]))
-
-        log(message, answer)
-        bot.send_message(message.chat.id, answer )
+                  '\n' + wex.Api(coin[i])+'\n'+'\n')
+        f.write(answer)
         i=i+1
-
+    f.close()
+    f=open('temp','r')
+    answ= f.read()
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
+    f.close()
 
 
 @bot.message_handler(commands=['yobit'])  # Обработка команды Wex
 def handle_text(message):
+    f = open('temp', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['btc_usd','btc_rur','btc_eur',
@@ -188,15 +198,20 @@ def handle_text(message):
     i = 0
     while i <= 27:
         answer = ('####' + now + '####' +
-                  '\n' + yobit.Api(coin[i]))
-
-        log(message, answer)
-        bot.send_message(message.chat.id, answer )
-        i=i+1
+                  '\n' + yobit.Api(coin[i])+'\n'+'\n')
+        f.write(answer)
+        i = i + 1
+    f.close()
+    f = open('temp', 'r')
+    answ = f.read()
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
+    f.close()
 
 
 @bot.message_handler(commands=['exmo'])  # Обработка команды Wex
 def handle_text(message):
+    f = open('temp', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['BTC_USD','BTC_RUB','BTC_EUR',
@@ -209,15 +224,20 @@ def handle_text(message):
     i = 0
     while i <= 20:
         answer = ('####' + now + '####' +
-                  '\n' + exmo.Api(coin[i]))
-
-        log(message, answer)
-        bot.send_message(message.chat.id, answer )
-        i=i+1
+                  '\n' + exmo.Api(coin[i])+'\n'+'\n')
+        f.write(answer)
+        i = i + 1
+    f.close()
+    f = open('temp', 'r')
+    answ = f.read()
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
+    f.close()
 
 
 @bot.message_handler(commands=['bitfenix'])  # Обработка команды Wex
 def handle_text(message):
+    f = open('temp', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['btcusd','btceur',
@@ -229,11 +249,15 @@ def handle_text(message):
     i = 0
     while i <= 12:
         answer = ('####' + now + '####' +
-                  '\n' + bitfinex.Api(coin[i]))
-
-        log(message, answer)
-        bot.send_message(message.chat.id, answer )
-        i=i+1
+                  '\n' + bitfinex.Api(coin[i])+'\n'+'\n')
+        f.write(answer)
+        i = i + 1
+    f.close()
+    f = open('temp', 'r')
+    answ = f.read()
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
+    f.close()
 
 if __name__ == '__main__':
     bot.polling(none_stop=True, timeout=1200)
