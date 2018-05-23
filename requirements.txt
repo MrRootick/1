@@ -3,4 +3,5 @@ pyTelegramBotAPI==2.1.7
 requests==2.11.1
 beautifulsoup4==4.5.1
 urllib3==1.22
-
+sqlite3
+json
