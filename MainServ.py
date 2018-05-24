@@ -1,5 +1,4 @@
 import os
-import telebot
 import wex
 import sqlite3
 import bitfinex
@@ -161,7 +160,7 @@ def handle_text(message):
     i = 0
     while i <= 30:
         answer = ('####' + now + '####' +
-                  '\n' + wex.Api(coin[i],i)+'\n'+'\n')
+                  '\n' + wex.Api(coin[i])+'\n'+'\n')
         f.write(answer)
         i=i+1
     f.close()
