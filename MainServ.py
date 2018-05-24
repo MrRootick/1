@@ -138,8 +138,7 @@ def handle_text(message):
 
 @bot.message_handler(commands=['wex'])  # Обработка команды Wex
 def handle_text(message):
-    open('wex', 'w').close()
-    f = open('temp', 'w')
+    f = open('temp_wex', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['btc_usd','btc_rur','btc_eur',
@@ -189,7 +188,7 @@ def handle_text(message):
 
 @bot.message_handler(commands=['exmo'])  # Обработка команды Wex
 def handle_text(message):
-    f = open('temp', 'w')
+    f = open('temp_exmo', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['BTC_USD','BTC_RUB','BTC_EUR',
@@ -206,7 +205,7 @@ def handle_text(message):
         f.write(answer)
         i = i + 1
     f.close()
-    f = open('temp', 'r')
+    f = open('temp_exmo', 'r')
     answ = f.read()
     log(message, answ)
     bot.send_message(message.chat.id, answ)
@@ -215,7 +214,7 @@ def handle_text(message):
 
 @bot.message_handler(commands=['bitfenix'])  # Обработка команды Wex
 def handle_text(message):
-    f = open('temp', 'w')
+    f = open('temp_bitfenix', 'w')
     from datetime import datetime
     now = str(datetime.now())
     coin = ['btcusd','btceur',
@@ -231,7 +230,7 @@ def handle_text(message):
         f.write(answer)
         i = i + 1
     f.close()
-    f = open('temp', 'r')
+    f = open('temp_bitfenix', 'r')
     answ = f.read()
     log(message, answ)
     bot.send_message(message.chat.id, answ)
