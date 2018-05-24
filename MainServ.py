@@ -6,9 +6,10 @@ import exmo
 import comparison
 import yobit
 import telebot
+import tokenTelegram
 from flask import Flask, request
 
-TOKEN = '538630093:AAFaoDuSjuT0o1gI0swlvp8jeUwo-4yJgbY'
+TOKEN = tokenTelegram.key
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 ########################################################################################################################
@@ -59,15 +60,6 @@ def timed_job():
      now = str(datetime.now())
      print('#####' + now + '#####' + '\n' + 'Синхронизация bitfinex.com с бд, успешно')
 
-
-
-
-
-
-
-
-
-
 ########################################################################################################################
 #                                   Логи                                                                               #
 ########################################################################################################################
@@ -97,7 +89,6 @@ def log(message,answer):
     last_name = "{0}".format(message.from_user.last_name)
 
     add_user(id, first_name, last_name)
-
 
 
 def add_user(id, first_name, last_name):            #запимсь в БД
