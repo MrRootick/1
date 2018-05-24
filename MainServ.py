@@ -11,7 +11,6 @@ import logging
 
 from flask import Flask, request
 
-bot = telebot.TeleBot(tokenTelegram.key)
 server = Flask(__name__)
 
 
@@ -31,7 +30,7 @@ server = Flask(__name__)
 ########################################################################################################################
 # -*- coding: utf-8 -*-
 bot = telebot.TeleBot(tokenTelegram.key)
-bot=str(bot)
+bottok=tokenTelegram.key
 ########################################################################################################################
 #                                   цикл                                                                               #
 ########################################################################################################################
@@ -268,7 +267,7 @@ def handle_text(message):
     f.close()
 
 
-@server.route('/' + bot, methods=['POST'])
+@server.route('/' + bottok, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
@@ -277,7 +276,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://botbtc.herokuapp.com/' + bot)
+    bot.set_webhook(url='https://botbtc.herokuapp.com/' + bottok)
     return "!", 200
 
 
