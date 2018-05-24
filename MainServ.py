@@ -1,15 +1,19 @@
-import telebot
 import tokenTelegram
-import os
 import wex
 import sqlite3
 import bitfinex
 import exmo
 import comparison
 import yobit
-import logging
 
+import os
+
+import telebot
 from flask import Flask, request
+# -*- coding: utf-8 -*-
+bot = telebot.TeleBot(tokenTelegram.key)
+bott = tokenTelegram.key
+bott = str(bott)
 
 server = Flask(__name__)
 
@@ -28,9 +32,7 @@ server = Flask(__name__)
 #                                                                                                                      #
 #                                                                                                                      #
 ########################################################################################################################
-# -*- coding: utf-8 -*-
-bot = telebot.TeleBot(tokenTelegram.key)
-bottok=tokenTelegram.key
+
 ########################################################################################################################
 #                                   цикл                                                                               #
 ########################################################################################################################
@@ -267,7 +269,7 @@ def handle_text(message):
     f.close()
 
 
-@server.route('/' + bottok, methods=['POST'])
+@server.route('/' + bott, methods=['POST'])
 def getMessage():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "!", 200
@@ -276,9 +278,9 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://botbtc.herokuapp.com/' + bottok)
+    bot.set_webhook(url='https://botbtc.herokuapp.com/' + bott)
     return "!", 200
 
 
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+server = Flask(__name__)
