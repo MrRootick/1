@@ -1,1 +1,1 @@
-web: python3 Main.py
+bot: python3 Main.py
