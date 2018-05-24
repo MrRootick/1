@@ -1,1 +1,1 @@
-web: python3 Main.py -p $PORT
+web: python3 MainServ.py -p $PORT

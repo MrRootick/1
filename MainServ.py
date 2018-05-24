@@ -1,12 +1,16 @@
-import tokenTelegram
 import telebot
+import tokenTelegram
+import os
 import wex
 import sqlite3
 import bitfinex
 import exmo
 import comparison
 import yobit
-#from apscheduler.schedulers.blocking import BlockingScheduler
+from flask import Flask, request
+
+bot = telebot.TeleBot(tokenTelegram.key)
+server = Flask(__name__)
 
 
 ########################################################################################################################
@@ -260,5 +264,16 @@ def handle_text(message):
     bot.send_message(message.chat.id, answ)
     f.close()
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True, timeout=1200)
+
+@server.route("/токен бота", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://btcbotrootick.herokuapp.com/538630093:AAFaoDuSjuT0o1gI0swlvp8jeUwo-4yJgbY")
+    return "!", 200
+
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
