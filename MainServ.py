@@ -7,6 +7,8 @@ import bitfinex
 import exmo
 import comparison
 import yobit
+import logging
+
 from flask import Flask, request
 
 bot = telebot.TeleBot(tokenTelegram.key)
@@ -265,15 +267,23 @@ def handle_text(message):
     f.close()
 
 
-@server.route('/'+tokenTelegram.key, methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
+if "HEROKU" in list(os.environ.keys()):
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)
 
-@server.route("/")
-def webhook():
+    server = Flask(__name__)
+    @server.route("/bot", methods=['POST'])
+    def getMessage():
+        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+        return "!", 200
+    @server.route("/")
+    def webhook():
+        bot.remove_webhook()
+        bot.set_webhook(url="https://botbtc.herokuapp.com//botbtc") # этот url нужно заменить на url вашего Хероку приложения
+        return "?", 200
+    server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
+else:
+    # если переменной окружения HEROKU нету, значит это запуск с машины разработчика.
+    # Удаляем вебхук на всякий случай, и запускаем с обычным поллингом.
     bot.remove_webhook()
-    bot.set_webhook(url='https://btcbotrootick.herokuapp.com/'+tokenTelegram.key)
-    return "!", 200
-
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+    bot.polling(none_stop=True)
