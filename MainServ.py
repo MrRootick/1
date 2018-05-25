@@ -7,11 +7,14 @@ import comparison
 import yobit
 import telebot
 import tokenTelegram
+import random
+import time
 from flask import Flask, request
 
 TOKEN = tokenTelegram.key
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
+CHANNEL_NAME = '-1001275366258'
 ########################################################################################################################
 #                                   цикл                                                                               #
 ########################################################################################################################
@@ -114,6 +117,44 @@ def handle_text(message):
     answer = "Чо каво сучара"
     log(message, answer)
     bot.send_message(message.chat.id, answer )
+
+
+
+
+def new_post_key():
+    try:
+        conn = sqlite3.connect('key.db')
+        c = conn.cursor()
+        q=random.randint(1,47000)
+        c.execute("SELECT asd FROM qqq WHERE id='{}'".format(q))
+        value = c.fetchone()
+        key = str(value[0])
+        if key != None:
+            bot.send_message(CHANNEL_NAME, key)
+            c.close()
+            conn.close()
+            time.sleep(60*10)
+            new_post_key()
+
+
+        else:
+            time.sleep(10)
+            c.close()
+            conn.close()
+            print("Пусто")
+            new_post_key()
+
+    except:
+        print('Какая то ошибка')
+        new_post_key()
+
+@bot.message_handler(commands=['startkey'])  # Обработка команды start
+def handle_text(message):
+    answer = "Ключи раздаются"
+    bot.send_message(message.chat.id, answer )
+    new_post_key()
+
+
 
 @bot.message_handler(commands=['analys'])  # Обработка команды start
 def handle_text(message):
