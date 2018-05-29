@@ -38,11 +38,12 @@ def analys(brige,y,i,x):
                 sell=float(abc[2])
                 proc = (sell-buy) /(buy*0.01)
                 if buy!=None or sell!=None:
-                    if buy < sell and (buy*0.01)<(sell-buy):
+                    if proc >= 7:
+                        if buy < sell and (buy*0.01)<(sell-buy):
 
-                        return (abc[0] + '\n' +
-                                'Buy ' + abc[1] + ' ' + brige[y] + '\n' +
-                                'Sell ' + abc[2] + ' ' + brige[i] + '\n'
-                                +'profit ' + str(proc))
+                            return (abc[0] + '\n' +
+                                    'Buy ' + abc[1] + ' ' + brige[y] + '\n' +
+                                    'Sell ' + abc[2] + ' ' + brige[i] + '\n'
+                                    +'profit ' + str(proc))
             except TypeError:
                 return
