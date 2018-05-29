@@ -44,6 +44,6 @@ def analys(brige,y,i,x):
                             return (abc[0] + '\n' +
                                     'Buy ' + abc[1] + ' ' + brige[y] + '\n' +
                                     'Sell ' + abc[2] + ' ' + brige[i] + '\n'
-                                    +'profit ' + str(proc))
+                                    +'profit ' + str(proc)[0:4]+'%')
             except TypeError:
                 return
