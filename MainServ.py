@@ -173,7 +173,7 @@ def handle_text(message):
     f.close()
     f=open('temp','r')
     answ= f.read()
-    if answ!=None:
+    if answ!=' ':
         log(message, answ)
         bot.send_message(message.chat.id, answ)
     else:
