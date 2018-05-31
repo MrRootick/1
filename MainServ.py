@@ -173,13 +173,8 @@ def handle_text(message):
     f.close()
     f=open('temp','r')
     answ= f.read()
-    if answ!=' ':
-        log(message, answ)
-        bot.send_message(message.chat.id, answ)
-    else:
-        answ="Пусто"
-        log(message, answ)
-        bot.send_message(message.chat.id, answ)
+    log(message, answ)
+    bot.send_message(message.chat.id, answ)
     f.close()
 
 @bot.message_handler(commands=['wex'])  # Обработка команды Wex
