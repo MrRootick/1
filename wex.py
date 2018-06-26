@@ -30,7 +30,7 @@ def Api(coin):
         print("error sql")
     return ("wex " + coin + '\n' + " buy " + buy + '\n' + " sell " + sell)
 
-
+'''
 from datetime import datetime
 now = str(datetime.now())
 coin = ['btc_usd','btc_rur','btc_eur',
@@ -45,3 +45,4 @@ while i <= 30:
               '\n' + Api(coin[i])+'\n'+'\n')
     print(answer)
     i=i+1
+'''
