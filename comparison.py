@@ -38,7 +38,7 @@ def analys(brige,y,i,x):
                 sell=float(abc[2])
                 proc = (sell-buy) /(buy*0.01)
                 if buy!=None or sell!=None:
-                    if proc >= 3:
+                    if proc >= 0:
                         if buy < sell and (buy*0.01)<(sell-buy):
 
                             return (abc[0] + '\n' +
