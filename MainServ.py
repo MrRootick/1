@@ -175,9 +175,9 @@ def handle_text(message):
     log(message, answer)
     bot.send_message(message.chat.id, answer)
     timed_job()
-    brige = ['Wex', 'exmo','fenix',  'Yobit'] # 'fenix', добавить когда будет больше 10к бачей
-    for y in range(0, 4):
-        for i in range(0, 4):
+    brige = ['Wex', 'exmo',  'Yobit'] # 'fenix', добавить когда будет больше 10к бачей
+    for y in range(0, 3):
+        for i in range(0, 3):
             for x in range(0, 26):
                 answer=comparison.analys(brige,y,i,x)
                 if answer!=None:
