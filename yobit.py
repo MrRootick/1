@@ -34,5 +34,6 @@ def Api(coin):
         conn.close()
     except sqlite3.IntegrityError:
         print("error sql")
+
     return ("Yobit " + coin + '\n' + " buy " + buy + '\n' + " sell " + sell)
 
