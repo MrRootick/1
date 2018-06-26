@@ -19,6 +19,12 @@ def Api(coin):
     buy=str(buy)
     sell=str(sell)
     coin = str(coin.upper())
+    if coin[0:4] == 'DASH':
+        coin='DSH'+coin[4:8]
+    if coin[4:7]== 'RUR':                   # для общего стандарта отображения валют в БД
+        coin=coin[0:4]+"RUB"
+    if coin[0:3]== 'BCC':
+        coin='BCH'+coin[3:8]
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
     try:
@@ -29,5 +35,4 @@ def Api(coin):
     except sqlite3.IntegrityError:
         print("error sql")
     return ("Yobit " + coin + '\n' + " buy " + buy + '\n' + " sell " + sell)
-
 

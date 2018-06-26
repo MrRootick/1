@@ -71,7 +71,7 @@ def timed_job():
              'zec_btc', 'zec_usd']
      i = 0
      while i < len(coin):
-
+         yobit.Api(coin[i])
          i = i + 1
      print('#####' + now + '#####' + '\n' + 'Синхронизация yobit.net с бд, успешно')
 
