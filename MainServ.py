@@ -48,7 +48,7 @@ def timed_job():
      from datetime import datetime
      now = str(datetime.now())
      print('#####' + now + '#####' + '\n' + 'Синхронизация Exmo.com с бд, успешно')
-     """
+
      coin = ['btcusd', 'btceur',
              'ethusd', 'ethbtc',
              'dshusd', 'dshbtc',
@@ -62,7 +62,7 @@ def timed_job():
      from datetime import datetime
      now = str(datetime.now())
      print('#####' + now + '#####' + '\n' + 'Синхронизация bitfinex.com с бд, успешно')
-    """
+
      coin = ['btc_usd', 'btc_rur',
              'ltc_btc', 'ltc_usd', 'ltc_rur',
              'dash_btc', 'dash_usd', 'dash_rur', 'dash_eth',
@@ -175,9 +175,9 @@ def handle_text(message):
     log(message, answer)
     bot.send_message(message.chat.id, answer)
     timed_job()
-    brige = ['Wex', 'exmo',  'Yobit'] # 'fenix', добавить когда будет больше 10к бачей
-    for y in range(0, 3):
-        for i in range(0, 3):
+    brige = ['Wex', 'exmo','fenix',  'Yobit'] # 'fenix', добавить когда будет больше 10к бачей
+    for y in range(0, 4):
+        for i in range(0, 4):
             for x in range(0, 26):
                 answer=comparison.analys(brige,y,i,x)
                 if answer!=None:
