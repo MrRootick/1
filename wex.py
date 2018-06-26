@@ -1,4 +1,4 @@
-import urllib
+import urllib.request
 import bs4
 import sqlite3
 import json
