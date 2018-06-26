@@ -29,3 +29,19 @@ def Api(coin):
     except sqlite3.IntegrityError:
         print("error sql")
     return ("wex " + coin + '\n' + " buy " + buy + '\n' + " sell " + sell)
+
+
+from datetime import datetime
+now = str(datetime.now())
+coin = ['btc_usd','btc_rur','btc_eur',
+        'ltc_btc','ltc_usd','ltc_rur','ltc_eur',
+        'dsh_btc','dsh_usd','dsh_rur','dsh_eur','dsh_ltc','dsh_eth','dsh_zec',
+        'eth_btc','eth_usd','eth_eur','eth_ltc','eth_rur','eth_zec',
+        'bch_usd','bch_btc','bch_rur','bch_eur','bch_ltc','bch_eth','bch_dsh','bch_zec',
+        'zec_btc','zec_usd','zec_ltc']
+i = 0
+while i <= 30:
+    answer = ('####' + now + '####' +
+              '\n' + Api(coin[i])+'\n'+'\n')
+    print(answer)
+    i=i+1

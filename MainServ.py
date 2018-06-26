@@ -27,7 +27,7 @@ def timed_job():
              'bch_usd','bch_btc','bch_rur','bch_eur','bch_ltc','bch_eth','bch_dsh','bch_zec',
              'zec_btc','zec_usd','zec_ltc']
      i = 0
-     while i <= 27:
+     while i <len(coin):
          wex.Api(coin[i])
          i=i+1
      from datetime import datetime
@@ -42,7 +42,7 @@ def timed_job():
              'BCH_USD', 'BCH_BTC', 'BCH_RUB',
              'BCH_ETH', 'ZEC_BTC', 'ZEC_USD']
      a = 0
-     while a <= 20:
+     while a <len(coin):
          exmo.Api(coin[a])
          a = a + 1
      from datetime import datetime
@@ -56,12 +56,23 @@ def timed_job():
              'ltcusd', 'ltcbtc',
              'zecbtc', 'zecusd']
      i = 0
-     while i <= 12:
+     while i <len(coin):
          bitfinex.Api(coin[i])
          i = i + 1
      from datetime import datetime
      now = str(datetime.now())
      print('#####' + now + '#####' + '\n' + 'Синхронизация bitfinex.com с бд, успешно')
+
+     coin = ['btc_usd', 'btc_rur',
+             'ltc_btc', 'ltc_usd', 'ltc_rur',
+             'dash_btc', 'dash_usd', 'dash_rur', 'dash_eth',
+             'eth_btc', 'eth_usd', 'eth_rur',
+             'bcc_usd', 'bcc_btc', 'bcc_rur', 'bcc_eth',
+             'zec_btc', 'zec_usd']
+     i = 0
+     while i < len(coin):
+         print('#####' + now + '#####' + '\n' + 'Синхронизация yobit.net с бд, успешно')
+         i = i + 1
 
 ########################################################################################################################
 #                                   Логи                                                                               #
@@ -163,9 +174,9 @@ def handle_text(message):
     log(message, answer)
     bot.send_message(message.chat.id, answer)
     timed_job()
-    brige = ['Wex', 'exmo', 'fenix']
-    for y in range(0, 3):
-        for i in range(0, 3):
+    brige = ['Wex', 'exmo', 'fenix', 'Yobit']
+    for y in range(0, 4):
+        for i in range(0, 4):
             for x in range(0, 26):
                 answer=comparison.analys(brige,y,i,x)
                 if answer!=None:
@@ -189,7 +200,7 @@ def handle_text(message):
             'bch_usd','bch_btc','bch_rur','bch_eur','bch_ltc','bch_eth','bch_dsh','bch_zec',
             'zec_btc','zec_usd','zec_ltc']
     i = 0
-    while i <= 30:
+    while i <len(coin):
         answer = ('####' + now + '####' +
                   '\n' + wex.Api(coin[i])+'\n'+'\n')
         f.write(answer)
@@ -207,17 +218,17 @@ def handle_text(message):
     f = open('temp', 'w')
     from datetime import datetime
     now = str(datetime.now())
-    coin = ['btc_usd','btc_rur','btc_eur',
-            'ltc_btc','ltc_usd','ltc_rur','ltc_eur',
-            'dsh_btc','dsh_usd','dsh_rur','dsh_eur','dsh_ltc','dsh_eth','dsh_zec',
-            'eth_btc','eth_usd','eth_eur','eth_ltc','eth_rur','eth_zec',
-            'bch_usd','bch_btc','bch_rur','bch_eur','bch_ltc','bch_eth','bch_dsh','bch_zec',
-            'zec_btc','zec_usd','zec_ltc']
+    coin = ['btc_usd', 'btc_rur',
+            'ltc_btc', 'ltc_usd', 'ltc_rur',
+            'dash_btc', 'dash_usd', 'dash_rur', 'dash_eth',
+            'eth_btc', 'eth_usd', 'eth_rur',
+            'bcc_usd', 'bcc_btc', 'bcc_rur', 'bcc_eth',
+            'zec_btc', 'zec_usd']
     i = 0
-    while i <= 27:
+    while i < len(coin):
         answer = ('####' + now + '####' +
-                  '\n' + yobit.Api(coin[i])+'\n'+'\n')
-        f.write(answer)
+                  '\n' + yobit.Api(coin[i]) + '\n' + '\n')
+        print(answer)
         i = i + 1
     f.close()
     f = open('temp', 'r')
@@ -240,7 +251,7 @@ def handle_text(message):
             'BCH_USD','BCH_BTC','BCH_RUB',
             'BCH_ETH','ZEC_BTC','ZEC_USD']
     i = 0
-    while i <= 20:
+    while i <len(coin):
         answer = ('####' + now + '####' +
                   '\n' + exmo.Api(coin[i])+'\n'+'\n')
         f.write(answer)
@@ -265,7 +276,7 @@ def handle_text(message):
             'ltcusd','ltcbtc',
             'zecbtc','zecusd']
     i = 0
-    while i <= 12:
+    while i <len(coin):
         answer = ('####' + now + '####' +
                   '\n' + bitfinex.Api(coin[i])+'\n'+'\n')
         f.write(answer)
