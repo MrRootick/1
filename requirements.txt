@@ -1,6 +1,6 @@
 bs4==0.0.1
-pyTelegramBotAPI==2.1.7
-requests==2.11.1
-beautifulsoup4==4.5.1
-urllib3==1.22
-Flask==1.0.2
+pyTelegramBotAPI==3.6.7
+requests==2.22.0
+beautifulsoup4==4.8.2
+urllib3==1.25.8
+Flask==1.1.1
